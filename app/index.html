@@ -13,9 +13,19 @@
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
   <link rel="stylesheet" href="app.css">
   <script src="bower_components/angular/angular.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-  <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="app.js"></script>
+  <script src="view1/view1.js"></script>
+  <script src="view2/view2.js"></script>
+  <script src="components/version/version.js"></script>
+  <script src="components/version/version-directive.js"></script>
+  <script src="components/version/interpolate-filter.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
+
 </head>
 <body ng-app="onlineUniversity">
   <div class="container" ng-controller="OnlineUniversityController">
@@ -100,7 +110,7 @@
                 <th>Created</th>
                 <th>Description</th>
                 <th>
-                  <button type="button" class="btn btn-success tab" aria-label="Add" data-toggle="modal" data-target="#edit-course">
+                  <button ng-click="addCourse()" type="button" class="btn btn-success tab" aria-label="Add" data-toggle="modal" data-target="#edit-course">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                   </button>
                 </th>
@@ -118,7 +128,7 @@
                     </button>
                   </td>
                   <td>
-                    <button class="btn btn-danger remove-course" data-toggle="modal" data-target="#confirm-course-delete">
+                    <button ng-click="removeCourse(course)" class="btn btn-danger remove-course" data-toggle="modal" data-target="#confirm-course-delete">
                       <span class="glyphicon glyphicon-remove"></span>
                     </button>
                   </td>
@@ -126,7 +136,7 @@
             </tbody>
           </table>
         </main>
-      </div>
+
       <div class="modal fade" id="edit-course" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -183,22 +193,11 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-danger delete-course-button" data-dismiss="modal">Delete</button>
+                    <button ng-click="deleteCourse()" class="btn btn-danger delete-course-button" data-dismiss="modal">Delete</button>
                 </div>
             </div>
         </div>
     </div>
-
-  <!-- In production use:
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
-  -->
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script>
-  <script src="app.js"></script>
-  <script src="view1/view1.js"></script>
-  <script src="view2/view2.js"></script>
-  <script src="components/version/version.js"></script>
-  <script src="components/version/version-directive.js"></script>
-  <script src="components/version/interpolate-filter.js"></script>
+  </div>
 </body>
 </html>
