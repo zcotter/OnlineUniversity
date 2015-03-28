@@ -14,19 +14,177 @@
   <link rel="stylesheet" href="app.css">
   <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
-<body>
-  <ul class="menu">
-    <li><a href="#/view1">view1</a></li>
-    <li><a href="#/view2">view2</a></li>
-  </ul>
+<body ng-app="onlineUniversity">
+  <div class="container" ng-controller="OnlineUniversityController">
+        <header>
+          <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">OnlineU</a>
+              </div>
+              <div class="collapse navbar-collapse" id="navbar">
+                <ul class="nav navbar-nav">
+                  <li>
+                    <a href="#">Home</a>
+                  </li>
+                  <li>
+                    <a href="#">About</a>
+                  </li>
+                  <li>
+                    <a href="#">Catalog</a>
+                  </li>
+                  <li class="active">
+                    <a href="#">Profile</a>
+                  </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                  <li>
+                    <a href="#">Logout</a>
+                  </li>
+                  <li>
+                    <a href="#">Blog</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </header>
+        <main>
+          <h1>Profile</h1>
+          <form class="form-horizontal">
+            <div class="form-group">
+              <label for="firstName" class="col-sm-2 control-label">First Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="firstName" placeholder="First Name">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="lastName" class="col-sm-2 control-label">Last Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email" class="col-sm-2 control-label">Email</label>
+              <div class="col-sm-10">
+                <input type="email" class="form-control" id="email" placeholder="Email">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="password" class="col-sm-2 control-label">Password</label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control" id="password" placeholder="Password">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">Update</button>
+              </div>
+            </div>
+          </form>
+          <h2>Courses Created</h2>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Created</th>
+                <th>Description</th>
+                <th>
+                  <button type="button" class="btn btn-success tab" aria-label="Add" data-toggle="modal" data-target="#edit-course">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                  </button>
+                </th>
+              </tr>
+            </thead>
+            <tbody id="courses-table">
+              <tr ng-repeat="course in courses">
+                  <td>{{course.name}}</td>
+                  <td>{{course.category}}</td>
+                  <td>{{course.dateCreated}}</td>
+                  <td>{{course.description}}</td>
+                  <td>
+                    <button type="button" class="btn btn-primary tab" aria-label="Edit" data-toggle="modal" data-target="#edit-course">
+                       <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                    </button>
+                  </td>
+                  <td>
+                    <button class="btn btn-danger remove-course" data-toggle="modal" data-target="#confirm-course-delete">
+                      <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                  </td>
+              </tr>
+            </tbody>
+          </table>
+        </main>
+      </div>
+      <div class="modal fade" id="edit-course" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              Create New Course
+            </div>
+            <form class="form-horizontal">
+              <div class="modal-body">
 
-  <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-  <![endif]-->
+                <div class="form-group">
+                  <label for="edit-courseName" class="col-sm-2 control-label">Course Name</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="edit-courseName" placeholder="Course Name">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="edit-course-category-select" class="col-sm-2 control-label">Category</label>
+                  <div class="col-sm-10">
+                    <select class="form-control" id="edit-course-category-select">
+                      <option value="">Select One</option>
+                      <option value="PROG">Programming</option>
+                      <option value="DB">Database</option>
+                      <option value="WEB">Web Development</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="edit-dateCreated" class="col-sm-2 control-label">Date Created</label>
+                  <div class="col-sm-10">
+                    <input type="date" class="form-control" id="edit-dateCreated" placeholder="Fix This">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="edit-description" class="col-sm-2 control-label">Description</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="edit-description" placeholder="Description">
+                  </div>
+                </div>
 
-  <div ng-view></div>
-
-  <div>Angular seed app: v<span app-version></span></div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary edit-course-submit" data-dismiss="modal">Ok</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="confirm-course-delete" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    Are you sure you want to delete this course?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-danger delete-course-button" data-dismiss="modal">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
