@@ -57,6 +57,7 @@ app.controller("OnlineUniversityController", function ($scope, $http)
   {
     var index = $scope.courses.indexOf($scope.selectedCourse);
     $scope.courses.splice(index, 1);
+    $http.delete("http://localhost:3000/api/courses/" + index);
   }
 });
 //config(['$routeProvider', function($routeProvider) {

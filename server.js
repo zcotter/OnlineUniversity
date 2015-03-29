@@ -39,7 +39,12 @@ app.get('/api/courses/:index', function(request, response){
 
 app.post('/api/courses', function(request, response){
   courses.push(request.body.course);
-  response.send(200);
+  response.json(courses);
+});
+
+app.delete('/api/courses/:index', function(request, response){
+  courses.splice(request.params.index, 1);
+  response.json(courses);
 });
 
 app.listen(3000);
