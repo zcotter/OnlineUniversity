@@ -47,4 +47,9 @@ app.delete('/api/courses/:index', function(request, response){
   response.json(courses);
 });
 
+app.put('/api/courses/:index', function(request, response){
+  courses[request.params.index] = request.body.course;
+  response.json(courses);
+});
+
 app.listen(3000);

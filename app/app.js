@@ -31,18 +31,20 @@ app.controller("OnlineUniversityController", function ($scope, $http)
 
   $scope.updateCourse = function(newCourse)
   {
+    var clone = {name: newCourse.name,
+                 category: newCourse.category,
+                 dateCreated: newCourse.dateCreated,
+                 description: newCourse.description};
     if ($scope.selectedCourse == null){
-      var clone = {name: newCourse.name,
-                   category: newCourse.category,
-                   dateCreated: newCourse.dateCreated,
-                   description: newCourse.description};
+
       $scope.courses.push(clone);
       $http.post("http://localhost:3000/api/courses", JSON.stringify({course: clone}));
       newCourse = null;
     }
     else{
       var index = $scope.courses.indexOf($scope.selectedCourse);
-      $scope.courses[index] = newCourse
+      $scope.courses[index] = clone
+      $http.put("http://localhost:3000/api/courses/" + index, JSON.stringify({course: clone}));
     }
     $scope.selectedCourse = null;
     $scope.newCourse = null;
