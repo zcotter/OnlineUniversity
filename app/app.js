@@ -11,10 +11,6 @@ app.controller("OnlineUniversityController", function ($scope)
   { name : "AngularJS 101", category : "WEB", dateCreated : "4/1/2015", description : "Best" },
   { name : "NodeJS 101", category : "PROG", dateCreated : "5/1/2015", description : "Awesome" } ];
 
-  //$scope.selected = {
-    //item: $scope.courses[0]
-  //}
-
   $scope.addCourse = function()
   {
     $scope.selectedCourse = null;
@@ -24,7 +20,7 @@ app.controller("OnlineUniversityController", function ($scope)
   $scope.editCourse = function(targetCourse)
   {
     $scope.selectedCourse = targetCourse;
-    $scope.newCourse = null;
+    $scope.newCourse = targetCourse;
   }
 
   $scope.updateCourse = function(newCourse)
