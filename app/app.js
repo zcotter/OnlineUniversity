@@ -5,11 +5,17 @@ var app = angular.module('onlineUniversity', ['ui.bootstrap']);
 
 app.controller("OnlineUniversityController", function ($scope, $http)
 {
-  $http.get("http://localhost:3000/api/courses").success(
-    function (data, status, headers, config) {
-      $scope.courses = data;
-    }
-  )
+
+
+  var getCourses = function(){
+    $http.get("http://localhost:3000/api/courses").success(
+      function (data, status, headers, config) {
+        $scope.courses = data;
+      }
+    )
+  }
+
+  getCourses();
 
   $scope.addCourse = function()
   {
@@ -31,6 +37,7 @@ app.controller("OnlineUniversityController", function ($scope, $http)
                    dateCreated: newCourse.dateCreated,
                    description: newCourse.description};
       $scope.courses.push(clone);
+      $http.post("http://localhost:3000/api/courses", JSON.stringify({course: clone}));
       newCourse = null;
     }
     else{
