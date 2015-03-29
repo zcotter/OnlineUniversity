@@ -17,12 +17,37 @@ app.controller("OnlineUniversityController", function ($scope)
 
   $scope.addCourse = function()
   {
-    alert("something");
+    $scope.selectedCourse = null;
+    $scope.newCourse = null;
+  }
+
+  $scope.editCourse = function(targetCourse)
+  {
+    $scope.selectedCourse = targetCourse;
+    $scope.newCourse = null;
+  }
+
+  $scope.updateCourse = function(newCourse)
+  {
+    if ($scope.selectedCourse == null){
+      var clone = {name: newCourse.name,
+                   category: newCourse.category,
+                   dateCreated: newCourse.dateCreated,
+                   description: newCourse.description};
+      $scope.courses.push(clone);
+      newCourse = null;
+    }
+    else{
+      var index = $scope.courses.indexOf($scope.selectedCourse);
+      $scope.courses[index] = newCourse
+    }
+    $scope.selectedCourse = null;
+    $scope.newCourse = null;
   }
 
   $scope.removeCourse = function(course)
   {
-    $scope.selectedCourse = course
+    $scope.selectedCourse = course;
   }
 
   $scope.deleteCourse = function()
