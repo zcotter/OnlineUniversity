@@ -7,9 +7,10 @@ var multer     = require('multer');
 var cookieParser = require('cookie-parser');
 var session      = require('express-session');
 
-var hello = "hello"
+var hostname = "http://www.zachcotter.com:8000"
+
 var CORS = function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:8000');
+    res.header('Access-Control-Allow-Origin', hostname);
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
 

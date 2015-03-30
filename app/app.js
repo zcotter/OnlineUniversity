@@ -5,10 +5,11 @@ var app = angular.module('onlineUniversity', ['ui.bootstrap']);
 
 app.controller("OnlineUniversityController", function ($scope, $http)
 {
+  var hostname = "http://www.zachcotter.com:3000"
 
 
   var getCourses = function(){
-    $http.get("http://localhost:3000/api/courses").success(
+    $http.get(hostname + "/api/courses").success(
       function (data, status, headers, config) {
         $scope.courses = data;
       }
@@ -38,13 +39,13 @@ app.controller("OnlineUniversityController", function ($scope, $http)
     if ($scope.selectedCourse == null){
 
       $scope.courses.push(clone);
-      $http.post("http://localhost:3000/api/courses", JSON.stringify({course: clone}));
+      $http.post(hostname + "/api/courses", JSON.stringify({course: clone}));
       newCourse = null;
     }
     else{
       var index = $scope.courses.indexOf($scope.selectedCourse);
       $scope.courses[index] = clone
-      $http.put("http://localhost:3000/api/courses/" + index, JSON.stringify({course: clone}));
+      $http.put(hostname + "/api/courses/" + index, JSON.stringify({course: clone}));
     }
     $scope.selectedCourse = null;
     $scope.newCourse = null;
@@ -59,7 +60,7 @@ app.controller("OnlineUniversityController", function ($scope, $http)
   {
     var index = $scope.courses.indexOf($scope.selectedCourse);
     $scope.courses.splice(index, 1);
-    $http.delete("http://localhost:3000/api/courses/" + index);
+    $http.delete(hostname + "/api/courses/" + index);
   }
 });
 //config(['$routeProvider', function($routeProvider) {
